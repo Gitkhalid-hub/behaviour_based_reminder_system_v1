@@ -323,3 +323,4 @@ The goal is to make every part of the project answerable:
 - How does this module connect to the system flow?
 
 When those questions are clear, the code becomes easier to debug, extend, and explain.
+<!-- content verified -->
