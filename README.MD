@@ -15,7 +15,8 @@ This project begins Phase 2 of the automation roadmap: **Intelligent Automation*
 - Decides whether a reminder is needed
 - Generates reminder messages
 - Displays reminder notifications
-- Prints workflow summary
+- Generates workflow summaries
+- Includes controlled validation and failure handling
 - Uses modular responsibility separation
 
 ---
@@ -117,87 +118,26 @@ ReminderEngine
 ↓
 Notifier
 ↓
-main.py summary
+workflow summary generation
 ```
 
 ---
 
-# Responsibility Separation
+# 🧠 Architecture
 
-## BehaviorReader
+The system is built with layered intelligent automation design and clear responsibility separation.
 
-Responsible for:
+### Architecture Layers
 
-- loading usage history
-- validating that history data exists
-
-Does NOT know:
-
-- how patterns are detected
-- how reminders are created
-- how notifications are displayed
-
----
-
-## PatternDetector
-
-Responsible for:
-
-- scanning usage history
-- counting behavior frequency
-- producing behavior count data
-
-Does NOT know:
-
-- where data came from
-- how reminders are displayed
-- how threshold decisions are made
-
----
-
-## ReminderEngine
-
-Responsible for:
-
-- comparing behavior counts against thresholds
-- deciding whether a reminder is needed
-- building reminder messages
-
-Does NOT know:
-
-- file loading logic
-- raw storage format
-- notification display logic
-
----
-
-## Notifier
-
-Responsible for:
-
-- displaying reminder messages
-
-Does NOT know:
-
-- pattern detection logic
-- threshold rules
-- data loading logic
-
----
-
-## main.py
-
-Responsible for:
-
-- connecting the full workflow
-- handling feedback/errors
-- printing final summary
-
-Does NOT know:
-
-- low-level file loading logic
-- pattern internals
-- notification internals
+| Layer | Responsibility |
+|---|---|
+| `behavior_reader.py` | Loads and validates behavior history |
+| `pattern_detector.py` | Detects usage frequency patterns |
+| `reminder_engine.py` | Applies threshold logic and generates reminders |
+| `notifier.py` | Displays reminder notifications |
+| `main.py` | Orchestrates workflow execution and summary state |
+| `pseudocode.txt` | Planning and workflow reasoning |
+| `breakdown_engine.md` | Deep engineering analysis, debugging cognition, edge cases, and system reasoning |
 
 ---
 
@@ -235,29 +175,9 @@ generate a reminder message.
 Example:
 
 ```text
-Reminder: smart_file_organizer has been used frequently. Review its workflow or consider automating it further.
+smart_file_organizer has been used frequently.
+Review or automate further.
 ```
-
----
-
-# Complexity Analysis
-
-For V1:
-
-```text
-Time Complexity: O(n)
-Space Complexity: O(n)
-```
-
-Where:
-
-```text
-n = number of usage history events
-```
-
-The system uses O(n) time because it scans through usage history once.
-
-The system uses O(n) space because it loads the usage history into memory.
 
 ---
 
@@ -267,7 +187,9 @@ The system uses O(n) space because it loads the usage history into memory.
 - JSON
 - pathlib
 - Object-Oriented Programming (OOP)
-- File handling
+- File Handling
+- Pattern Detection Concepts
+- Intelligent Automation Concepts
 
 ---
 
@@ -287,46 +209,37 @@ This project was built to practice:
 
 ---
 
-# Cognition & Intelligence Engineering
+# Breakdown Engine
 
-This system introduces early rule-based intelligence.
+The project includes a dedicated engineering investigation document:
 
-## Prediction
+[breakdown_engine.md](breakdown_engine.md)
 
-The system predicts that a user may need a reminder based on repeated behavior.
+This file dissects the system using a technical detective approach.
 
-## Error
+It analyzes:
 
-Possible issues include:
+- surface behavior
+- line-by-line execution
+- variable purpose
+- system flow
+- edge cases
+- structural patterns
+- pattern detection logic
+- threshold reasoning
+- reminder generation behavior
+- workflow observability
+- complexity analysis
+- Cognition and Intelligence Engineering
+- Ethics and Safety Considerations
 
-- missing history
-- invalid data
-- weak patterns
-- false reminders
+This improves:
 
-## Compression
-
-Many usage events are compressed into a simple behavior signal.
-
-```text
-many events
-↓
-behavior count
-↓
-reminder decision
-```
-
-## Context
-
-Recent behavior determines whether a reminder makes sense.
-
-## Meta-Cognition
-
-The system observes behavior and reacts to behavior.
-
-## Application
-
-This helps users take action based on usage patterns.
+- debugging cognition
+- architectural understanding
+- reasoning transparency
+- workflow observability
+- system extensibility
 
 ---
 
